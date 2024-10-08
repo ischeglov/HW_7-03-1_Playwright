@@ -24,7 +24,7 @@ test('Successful registration', async ({ page }) => {
   await page.screenshot({ path: "screenshot0.png" });
 });
 
-test("Unsuccessful authorization", async ({ page }) => {
+test.only("Unsuccessful authorization", async ({ page }) => {
   await page.goto('https://netology.ru/');
   await page.getByRole('link', { name: 'Войти' }).click();
 
@@ -36,6 +36,6 @@ test("Unsuccessful authorization", async ({ page }) => {
 
   await page.getByTestId('login-submit-btn').click();
 
-  await expect(page.getByTestId('login-error-hint')).toContainText("Вы ввели неправильно логин или пароль");
+  await expect(page.getByTestId('login-error-hint')).toHaveText("Вы ввели неправильно логин или пароль.");
   await page.screenshot({ path: "screenshot1.png" });
 });
